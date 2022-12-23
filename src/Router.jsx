@@ -1,9 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+// import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./ErrorPage";
-import Login from "./screens/Login";
-import SignUp from "./screens/SignUp";
-import TodoList from "./screens/TodoList";
+import { createBrowserRouter } from "react-router-dom";
+import Todos from "./screens/Todos";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import HomeLayout from "./components/auth/HomeLayout";
 
 const router = createBrowserRouter([
   {
@@ -12,15 +13,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Login />,
+        element: <HomeLayout />,
       },
       {
-        path: "signUp",
-        element: <SignUp />,
-      },
-      {
-        path: "todo",
-        element: <TodoList />,
+        path: "todos",
+        element: (
+          <ProtectedRoute>
+            <Todos />
+          </ProtectedRoute>
+        ),
       },
     ],
     errorElement: <ErrorPage />,

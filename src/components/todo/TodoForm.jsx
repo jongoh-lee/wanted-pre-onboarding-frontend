@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
-import { todoAPI } from "../../api/api";
+import { clientPost } from "../../api/api";
 const TodoForm = ({ setTodos }) => {
   const inputRef = useRef();
 
@@ -9,8 +9,8 @@ const TodoForm = ({ setTodos }) => {
       <InputStyle type="text" ref={inputRef} />
       <ButtonStyled
         onClick={() => {
-          todoAPI.addTodo({ todo: inputRef.current.value }).then(() => {
-            todoAPI.getTodos().then((res) => {
+          clientPost.create({ todo: inputRef.current.value }).then(() => {
+            clientPost.read().then((res) => {
               setTodos(res);
             });
             inputRef.current.value = "";

@@ -1,4 +1,4 @@
-import { todoAPI } from "../../api/api";
+import { clientPost } from "../../api/api";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import TodoIcon from "./TodoIcon";
@@ -23,8 +23,8 @@ const Todo = ({ todo, getTodo }) => {
           onClick={() => {
             if (isUpDate) {
               setIsUpDate(!isUpDate);
-              todoAPI
-                .upDateTodo(todo.id, {
+              clientPost
+                .update(todo.id, {
                   todo: upDateRef.current.value,
                   isCompleted: isCompleted,
                 })
@@ -51,7 +51,7 @@ const Todo = ({ todo, getTodo }) => {
         ) : (
           <ButtonStyled
             onClick={() => {
-              todoAPI.deleteTodo(todo.id).then(() => {
+              clientPost.delete(todo.id).then(() => {
                 getTodo();
               });
             }}
