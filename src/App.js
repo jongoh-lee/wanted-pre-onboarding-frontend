@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import AuthProvider from "./components/auth/auth";
 import Header from "./components/Header";
-import { CenterBox } from "./components/shared";
 import { GlobalStyles, lightTheme } from "./styles";
 
 function App() {
@@ -13,9 +12,7 @@ function App() {
       <GlobalStyles />
       <AuthProvider>
         <Header />
-        <CenterBox>
-          <Outlet />
-        </CenterBox>
+        <Outlet />
       </AuthProvider>
     </ThemeProvider>
   );
